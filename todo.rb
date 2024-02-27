@@ -7,7 +7,7 @@ module Todo
           puts "No TODOs to export, please add a TODO before download as a CSV"
         else
           current_time = Time.now
-          timestamp = current_time.strftime("%Y/%m/%d")
+          timestamp = current_time.strftime("%Y-%m-%d")
           csv_file = "todos_#{timestamp}.csv"
     
           ::CSV.open(csv_file, 'w') do |csv|
@@ -20,7 +20,7 @@ module Todo
     
     def self.see_all_todos(todos)
         if todos.empty?
-            timestamp = Date.today.strftime("%Y/%m/%d")
+            timestamp = Date.today.strftime("%Y-%m-%d")
             csv_file_name = File.join(File.dirname(__FILE__), CSV_DIRECTORY, "todos_#{timestamp}", "todos_#{timestamp}.csv")
     
             if File.exist?(csv_file_name)
@@ -32,7 +32,7 @@ module Todo
                 puts "Please add a TODO before checking all TODOs."
             end
         else
-            timestamp = Date.today.strftime("%Y/%m/%d")
+            timestamp = Date.today.strftime("%Y-%m-%d")
             puts "List of all TODOs:\n"
             todos.each_with_index { |todo, index| puts "#{index + 1} #{todo}"}
         end
